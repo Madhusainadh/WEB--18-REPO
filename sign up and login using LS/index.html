@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+          .size{
+             height: 30px;
+             width: 200px;
+             font-weight: bold;
+          }
+        div{
+            display: flex;
+            margin: auto;
+            border: solid;
+             justify-content: center;
+             align-items: center;
+        }
+    </style>
+  </head>
+  <body>
+      <div>
+    <form id="form">
+      <input class="size" id="name" type="text" value="" placeholder="Enter your name" /><br>
+      <input class="size" id="email" type="email" value="" placeholder="Enter email" /><br>
+      <input class="size" id="password" type="password" value="" placeholder="Enter password" /><br>
+      <input  type="submit" value="creat account" /><br>
+      <p>Already have a account><a href="signin.html">Signin</a></p>
+    </form>
+</div>
+  </body>
+</html>
+<script>
+
+     let form = document.querySelector("form");
+     let LSdata = JSON.parse(localStorage.getItem("userdata"));
+     form.addEventListener("submit",function(event){
+         event.preventDefault();
+         let data = {
+             name:form.name.value,
+             email:form.email.value,
+             password:form.password.value,
+         }
+          if (LSdata!=null&&LSdata.email===data.email){
+              alert("Account already exist. Please Login");
+              return;
+            
+          }
+         localStorage.setItem("userdata",JSON.stringify(data));
+         alert("Signup successful. please Signin")
+     })
+
+
+
+
+
+</script>
